@@ -76,7 +76,7 @@ class Game {
   endGame(msg) {
     setTimeout(() => {
       alert(msg);
-    }, 50);
+    }, 200);
     if (this.gameOver === true) {
       setTimeout(() => {
         console.log('game over');
