@@ -74,12 +74,16 @@ class Game {
   }
 
   endGame(msg) {
-    alert(msg);
+    setTimeout(() => {
+      alert(msg);
+    }, 50);
     if (this.gameOver === true) {
-      console.log('game over');
-      const board = document.getElementById('board');
-      board.innerHTML = '';
-      gameMenu.style.display = 'flex';
+      setTimeout(() => {
+        console.log('game over');
+        const board = document.getElementById('board');
+        board.innerHTML = '';
+        gameMenu.style.display = 'flex';
+      }, 1000);
     }
   }
 
@@ -130,7 +134,7 @@ class Game {
     this.board[y][x] = this.currPlayer;
     this.placeInTable(y, x);
 
-    
+
     // assign winner string
     if (this.currPlayer === this.players[0]) {
       this.winner = 'Player 1';
@@ -149,7 +153,7 @@ class Game {
       this.gameOver = true;
       return this.endGame('Tie!');
     }
-    
+
     // switch players
     this.currPlayer = this.currPlayer === this.players[0] ? this.players[1] : this.players[0];
   }
