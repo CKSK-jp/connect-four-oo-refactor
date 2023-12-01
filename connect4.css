@@ -32,3 +32,71 @@
 #column-top td:hover {
   background-color: gold;
 }
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #101b27;
+}
+
+.game-menu {
+  width: 60vw;
+  height: 300px;
+  box-shadow: #ffffff14 0 4px 16px;
+  background-color: #0c141d;
+  border-radius: 10px;
+}
+
+.player-select {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+#player-1,
+#player-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #233448;
+  box-shadow: #ffffff14 0 4px 16px;
+  border-radius: 50%;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  width: 100px;
+  margin-bottom: 40px;
+  background-color: #90b1d7;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+h1,
+strong,
+label {
+  color: #d1d4dc;
+}
+
+input {
+  margin: 10px;
+}
+
+button:hover, #player-1:hover, #player-2:hover {
+  background-color: #827bd1;
+  box-shadow: #ebebeb 0 4px 16px;
+  cursor: pointer;
+}

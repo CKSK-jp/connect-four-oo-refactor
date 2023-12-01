@@ -4,19 +4,22 @@
  * column until a player gets four-in-a-row (horiz, vert, or diag) or until
  * board fills (tie)
  */
-
+const gameMenu = document.querySelector('section');
 
 class Game {
-  constructor(width = 7, height = 6) {
+  constructor(p1, p2, width = 7, height = 6) {
+    this.players = [p1, p2];
     this.width = width;
     this.height = height;
-    this.board = [];
-    this.currPlayer = 1;
+    this.currPlayer = p1;
     this.makeBoard();
     this.makeHtmlBoard();
+    this.winner = '';
+    this.gameOver = false;
   }
 
   makeBoard() {
+    this.board = [];
     for (let y = 0; y < this.height; y++) {
       this.board.push(Array.from({ length: this.width }));
     }
@@ -63,7 +66,7 @@ class Game {
   placeInTable(y, x) {
     const piece = document.createElement('div');
     piece.classList.add('piece');
-    piece.classList.add(`p${this.currPlayer}`);
+    piece.style.backgroundColor = this.currPlayer.color;
     piece.style.top = -50 * (y + 2); // not sure what this does...
 
     const spot = document.getElementById(`${y}-${x}`);
@@ -72,6 +75,12 @@ class Game {
 
   endGame(msg) {
     alert(msg);
+    if (this.gameOver === true) {
+      console.log('game over');
+      const board = document.getElementById('board');
+      board.innerHTML = '';
+      gameMenu.style.display = 'flex';
+    }
   }
 
   checkForWin() {
@@ -121,20 +130,42 @@ class Game {
     this.board[y][x] = this.currPlayer;
     this.placeInTable(y, x);
 
+    
+    // assign winner string
+    if (this.currPlayer === this.players[0]) {
+      this.winner = 'Player 1';
+    } else {
+      this.winner = 'Player 2';
+    }
+
     // check for win
     if (this.checkForWin()) {
-      return this.endGame(`Player ${this.currPlayer} won!`);
+      this.gameOver = true;
+      return this.endGame(`Player ${this.winner} won!`);
     }
 
     // check for tie
     if (this.board.every(row => row.every(cell => cell))) {
+      this.gameOver = true;
       return this.endGame('Tie!');
     }
-
+    
     // switch players
-    this.currPlayer = this.currPlayer === 1 ? 2 : 1;
+    this.currPlayer = this.currPlayer === this.players[0] ? this.players[1] : this.players[0];
   }
 }
 
-new Game(7, 6);
+class Player {
+  constructor(color) {
+    this.color = color;
+  }
+}
+
+document.querySelector('#start-game').addEventListener('click', () => {
+  gameMenu.style.display = "none";
+
+  let p1 = new Player(document.querySelector('#player1').value);
+  let p2 = new Player(document.querySelector('#player2').value);
+  new Game(p1, p2);
+});
 
