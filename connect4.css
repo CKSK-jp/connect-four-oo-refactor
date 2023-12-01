@@ -15,14 +15,6 @@
   border-radius: 50%;
 }
 
-.piece.p1 {
-  background-color: red;
-}
-
-.piece.p2 {
-  background-color: blue;
-}
-
 /* column-top is table row of clickable areas for each column */
 
 #column-top td {
@@ -33,13 +25,13 @@
   background-color: gold;
 }
 
-
 body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #101b27;
+  zoom: 1.3;
 }
 
 .game-menu {
@@ -95,7 +87,7 @@ input {
   margin: 10px;
 }
 
-button:hover, #player-1:hover, #player-2:hover {
+button:hover, input:hover {
   background-color: #827bd1;
   box-shadow: #ebebeb 0 4px 16px;
   cursor: pointer;
